@@ -16,7 +16,7 @@ class GravityPope extends Base {
         const price = await this.page.locator('#ProductPrice');
         this.onSale = (await price.getAttribute('class')).includes('sale');
         let money = await price.locator('span.money').innerText();
-        money = money.replace('$', '');
+        money = money.replace('$', '').trim();
         this.price = parseFloat(money);
 
         const sizes = await this.page.locator('select.select-type__size >> option').all();

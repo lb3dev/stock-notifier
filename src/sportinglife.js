@@ -16,7 +16,7 @@ class SportingLife extends Base {
         const price = await this.page.locator('#product-content >> span.price-sales').first();
         this.onSale = (await price.getAttribute('class')).includes('has-standard-price');
         let money = await price.innerText();
-        money = money.replace('$', '');
+        money = money.replace('$', '').trim();
         this.price = parseFloat(money);
 
         const sizes = await this.page.locator('select#va-size >> option').all();

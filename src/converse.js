@@ -30,7 +30,7 @@ class Converse extends Base {
         if (this.inStock) {
             const price = await this.page.locator('div.product-info-main.amtheme-product-info >> span.normal-price >> span.price').innerText();
             this.onSale = (await this.page.locator('div.product-info-main.amtheme-product-info >> span.old-price').count()) > 0;
-            this.price = parseFloat(price.replace('CA$', ''));
+            this.price = parseFloat(price.replace('CA$', '').trim());
             this.hit = this.price <= this.threshold;
         }
 
