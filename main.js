@@ -40,7 +40,7 @@ async function runAll() {
         'hit'
     ];
 
-    const timestamp = DateTime.now().toFormat('yyyy-MM-dd-HH:mm:ss.SSS');
+    const timestamp = DateTime.now().toFormat('yyyy-MM-dd-HH-mm-ss.SSS');
     const output = fs.createWriteStream(`stocks-${timestamp}.csv`);
     const stringifier = stringify({ header: true, columns: columns,
         cast: {
