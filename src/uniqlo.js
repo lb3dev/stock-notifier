@@ -11,6 +11,8 @@ class Uniqlo extends Base {
     }
 
     async checkColor(color) {
+        this.hit = false;
+        
         if (color) {
             await this.page.locator(`dt.color >> input[value="${color}"] + label`).click();
             this.url = await this.page.url();
