@@ -40,8 +40,12 @@ async function runAll() {
         'hit'
     ];
 
+    if (!fs.existsSync('stocks')) {
+        fs.mkdirSync('stocks');
+    }
+    
     const timestamp = DateTime.now().toFormat('yyyy-MM-dd-HH-mm-ss.SSS');
-    const output = fs.createWriteStream(`stocks-${timestamp}.csv`);
+    const output = fs.createWriteStream(`stocks/stocks-${timestamp}.csv`);
     const stringifier = stringify({ header: true, columns: columns,
         cast: {
             boolean: (value) => value ? "true" : "false"
