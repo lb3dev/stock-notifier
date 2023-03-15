@@ -112,3 +112,4 @@ dist
 # Project related files
 config.json
 *.csv
+stocks/
