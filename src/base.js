@@ -43,9 +43,15 @@ class Base {
     }
 
     async run() {
-        await this.openPage();
-        await this.check();
-        await this.close();
+        try {
+            await this.openPage();
+            await this.check();
+        } catch (err) {
+            console.error(err);
+        } finally {
+            await this.close();
+        }
+        
         return this.rows;
     }
 }
