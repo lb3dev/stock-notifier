@@ -4,6 +4,7 @@ const { DateTime } = require('luxon');
 const uniqlo = require('./src/uniqlo');
 const converse = require('./src/converse');
 const gravitypope = require('./src/gravitypope');
+const muji = require('./src/muji');
 const sportinglife = require('./src/sportinglife');
 
 async function runAll() {
@@ -28,6 +29,11 @@ async function runAll() {
     let sportingLifeConfigs = config['SportingLife'] || [];
     for (const config of sportingLifeConfigs) {
         rows = rows.concat(await sportinglife.run(config));
+    }
+
+    let mujiConfigs = config['Muji'] || [];
+    for (const config of mujiConfigs) {
+        rows = rows.concat(await muji.run(config));
     }
 
     const columns = [
