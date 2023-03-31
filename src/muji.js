@@ -13,6 +13,10 @@ class Muji extends Base {
         const title = await this.page.locator('h1.product-title');
         this.title = await title.innerText();
 
+        const price = await this.page.locator('div.price__current >> span.money').innerText();
+        this.onSale = (await this.page.locator('span.product__badge--sale').count()) > 0;
+        this.price = parseFloat(price.replace('$', '').trim());
+
         const selector = await this.page.locator('select.options-selection__input-select');
         const sizes = await selector.locator('option').all();
 
@@ -30,9 +34,6 @@ class Muji extends Base {
         }
 
         if (this.inStock) {
-            const price = await this.page.locator('div.price__current >> span.money').innerText();
-            this.onSale = (await this.page.locator('span.product__badge--sale').count()) > 0;
-            this.price = parseFloat(price.replace('$', '').trim());
             this.hit = this.price <= this.threshold;
         }
 
