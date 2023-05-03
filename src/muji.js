@@ -13,7 +13,7 @@ class Muji extends Base {
         const title = await this.page.locator('h1.product-title');
         this.title = await title.innerText();
 
-        let price = await this.page.locator('div.price__current >> span.money').innerText();
+        let price = await this.page.locator('div.product-main >> div.price__current >> span.money').innerText();
         this.onSale = (await this.page.locator('span.product__badge--sale').count()) > 0;
         const onlineSale = (await this.page.locator('div.tdf_discountable_product').count()) > 0;
         this.price = parseFloat(price.replace('$', '').trim());
