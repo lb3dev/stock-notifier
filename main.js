@@ -9,37 +9,23 @@ const simons = require('./src/simons');
 const sportinglife = require('./src/sportinglife');
 
 async function runAll() {
-    const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
+    const configs = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
+    const brands = {
+        'Uniqlo'      : uniqlo.run,
+        'Converse'    : converse.run,
+        'GravityPope' : gravitypope.run,
+        'SportingLife': sportinglife.run,
+        'Muji'        : muji.run,
+        'Simons'      : simons.run
+    };
+
     let rows = [];
 
-    let uniqloConfigs = config['Uniqlo'] || [];
-    for (const config of uniqloConfigs) {
-        rows = rows.concat(await uniqlo.run(config));
-    }
-
-    let converseConfigs = config['Converse'] || [];
-    for (const config of converseConfigs) {
-        rows = rows.concat(await converse.run(config));
-    }
-
-    let gravityPopeConfigs = config['GravityPope'] || [];
-    for (const config of gravityPopeConfigs) {
-        rows = rows.concat(await gravitypope.run(config));
-    }
-
-    let sportingLifeConfigs = config['SportingLife'] || [];
-    for (const config of sportingLifeConfigs) {
-        rows = rows.concat(await sportinglife.run(config));
-    }
-
-    let mujiConfigs = config['Muji'] || [];
-    for (const config of mujiConfigs) {
-        rows = rows.concat(await muji.run(config));
-    }
-
-    let simonsConfig = config['Simons'] || [];
-    for (const config of simonsConfig) {
-        rows = rows.concat(await simons.run(config));
+    for (let [brand, run] of Object.entries(brands)) {
+        let brandConfigs = configs[brand] || [];
+        for (const config of brandConfigs) {
+            rows = rows.concat(await run(config));
+        }
     }
 
     const columns = [
