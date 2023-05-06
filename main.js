@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { stringify } = require('csv-stringify');
 const { DateTime } = require('luxon');
+const asos = require('./src/asos');
 const uniqlo = require('./src/uniqlo');
 const converse = require('./src/converse');
 const gravitypope = require('./src/gravitypope');
@@ -16,7 +17,8 @@ async function runAll() {
         'GravityPope' : gravitypope.run,
         'SportingLife': sportinglife.run,
         'Muji'        : muji.run,
-        'Simons'      : simons.run
+        'Simons'      : simons.run,
+        'Asos'        : asos.run
     };
 
     let rows = [];
