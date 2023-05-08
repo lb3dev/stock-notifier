@@ -27,13 +27,14 @@ class Asos extends Base {
         await this.switchCountry();
 
         await this.page.waitForLoadState('domcontentloaded');
+
+        const price = await this.page.locator('#core-product >> span[data-testid="current-price"]').innerText();
+        this.price = parseFloat(price.replace('C$', '').replace('Now', '').trim());
+        
         const oos = await this.page.locator('#core-product >> h3[data-testid="outOfStockLabel"]').count();
         if (oos > 0) {
             return;
         }
-
-        const price = await this.page.locator('#core-product >> span[data-testid="current-price"]').innerText();
-        this.price = parseFloat(price.replace('C$', '').replace('Now', '').trim());
 
         const selector = await this.page.locator('#main-size-select-0');
         await this.page.waitForSelector('#main-size-select-0 >> option', { state: 'attached' });
