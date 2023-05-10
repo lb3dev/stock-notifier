@@ -4,6 +4,7 @@ const { DateTime } = require('luxon');
 const asos = require('./src/asos');
 const uniqlo = require('./src/uniqlo');
 const converse = require('./src/converse');
+const holt = require('./src/holtrenfrew');
 const gravitypope = require('./src/gravitypope');
 const muji = require('./src/muji');
 const simons = require('./src/simons');
@@ -18,7 +19,8 @@ async function runAll() {
         'SportingLife': sportinglife.run,
         'Muji'        : muji.run,
         'Simons'      : simons.run,
-        'Asos'        : asos.run
+        'Asos'        : asos.run,
+        'Holt'        : holt.run
     };
 
     let rows = [];
