@@ -36,9 +36,8 @@ class Asos extends Base {
             return;
         }
 
-        const selector = await this.page.locator('#main-size-select-0');
-        await this.page.waitForSelector('#main-size-select-0 >> option', { state: 'attached' });
-        const sizes = await selector.locator('option').all();
+        await this.page.waitForSelector('#variantSelector', { state: 'attached' });
+        const sizes = await this.page.locator('#variantSelector').all();
 
         for (const option of sizes) {
             const size = (await option.innerText()).trim();
