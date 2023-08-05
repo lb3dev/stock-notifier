@@ -40,7 +40,7 @@ class Uniqlo extends Base {
     }
 
     async check() {
-        // await this.overlay();
+        await this.overlay();
         if (this.colors) {
             for (const color of this.colors) {
                 await this.checkColor(color);
