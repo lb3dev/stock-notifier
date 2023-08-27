@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node main.js",
-    "test": "node test.js"
+    "clean": "rm -rf stocks/*"
   },
   "keywords": [],
   "author": "",
