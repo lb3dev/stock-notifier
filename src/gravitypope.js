@@ -2,14 +2,19 @@ const Base = require('./base');
 
 class GravityPope extends Base {
 
-    constructor(url, size, threshold) {
+    constructor(url, sizes, threshold) {
         super();
         this.url = url;
-        this.size = size;
+        this.sizes = sizes;
         this.threshold = threshold;
     }
 
-    async check() {
+    async checkSize(size) {
+        if (!size) {
+            return;
+        }
+        this.hit = false;
+
         const title = await this.page.locator('h1.product-name');
         this.title = await title.innerText();
 
@@ -35,10 +40,18 @@ class GravityPope extends Base {
 
         this.row();
     }
+
+    async check() {
+        if (this.sizes) {
+            for (const size of this.sizes) {
+                await this.checkSize(size);
+            }
+        }
+    }
 }
 
 async function run(config) {
-    return await new GravityPope(config.url, config.size, config.threshold).run();
+    return await new GravityPope(config.url, config.sizes, config.threshold).run();
 }
 
 module.exports = {
