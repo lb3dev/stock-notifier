@@ -9,9 +9,11 @@ const gravitypope = require('./src/gravitypope');
 const muji = require('./src/muji');
 const simons = require('./src/simons');
 const sportinglife = require('./src/sportinglife');
+const apex = require('./src/apex');
+const gs = require('./src/grantstone');
 
 async function runAll() {
-    const configs = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
+    const configs = JSON.parse(fs.readFileSync('/Users/ben/Documents/Stocks/config.json', 'utf-8'));
     const brands = {
         'Uniqlo'      : uniqlo.run,
         'Converse'    : converse.run,
@@ -20,7 +22,9 @@ async function runAll() {
         'Muji'        : muji.run,
         'Simons'      : simons.run,
         'Asos'        : asos.run,
-        'Holt'        : holt.run
+        'Holt'        : holt.run,
+        'Apex'        : apex.run,
+        'GS'          : gs.run
     };
 
     let rows = [];
